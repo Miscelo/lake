@@ -4,6 +4,7 @@
 /****************************************************************************************/
 #include <stdio.h>
 
+// Initalize function that prints a matrix
 void printMatrix(int matrix[2][2]);
 
 
