@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+
+
+	char animal[4] = {'G','a','t','o'};
+	char mascota[] = "Gato";
+
+
+	int len1, len2;
+	len1 = sizeof(animal);
+	len2 = sizeof(mascota)/sizeof(char);
+
+	printf("%d, %d\n", len1, len2);
+
+
+	int l1, l2;
+	l1 = strlen(animal);
+	l2 = strlen(mascota);
+	printf("%d, %d\n", l1, l2);
+
+
+
+	return 0;
+
+}

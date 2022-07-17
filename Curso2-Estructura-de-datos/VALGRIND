@@ -1,0 +1,16 @@
+Valgrind Anleitung
+--------------------
+//check if valgind is installed
+apt policy valgrind
+
+
+sudo apt install valgrind
+
+
+//g-flag
+
+gcc -Wall -g -o test test.c
+
+valgrind --tool=memcheck --leak-ckeck=full ./test
+
+
