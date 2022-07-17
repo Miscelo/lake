@@ -4,6 +4,7 @@
 /****************************************************************************************/
 #include <stdio.h>
 
+
 // Initalize function that prints a matrix
 void printMatrix(int matrix[2][2]);
 
@@ -14,7 +15,7 @@ int main(){
 	int m1[2][2] = {{1,-3},{0,-2}};
 
 	int m2[2][2] = {{-1,4},{7,1}};
-	
+
 	printMatrix(m1);
 	printf("  X\n");
 	printMatrix(m2);
@@ -25,12 +26,12 @@ int main(){
 	bm[0][1] = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1];
 	bm[1][0] = m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0];
 	bm[1][1] = m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1];
-	
-	printf("  =\n");	
-	
+
+	printf("  =\n");
+
 	printMatrix(bm);
 
-	
+
 
 	return 0;
 }
