@@ -43,7 +43,8 @@ void newdata(char *sn, char *n, int bdd, int bmm, int byy, int doHdd, int doHmm,
     /*Check if first element exists, if first element is allocated to NULL, then it will be start of list*/
     if(origin == NULL){
         /*reserve space  in RAM for this structur for the first element.*/
-        if((origin = malloc(sizeof(struct Employee))) == NULL){
+        if((origin = 
+        malloc(sizeof(struct Employee))) == NULL){
             fprintf(stderr, "No space available for element!\n");
             return;
         }
