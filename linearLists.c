@@ -10,7 +10,7 @@ typedef struct _Coordinates_{
 } Cooridinates;
 
 Cooridinates *list = NULL;    
-Cooridinates *first = NULL;  /*guarda primer elemento, es la cabeza de la lista.*/
+Cooridinates *first = NULL;  /*guarda referencia del primer elemento, es la cabeza de la lista.*/
 
 
 void createFirstElement(int x, int y){
