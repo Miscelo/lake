@@ -1,4 +1,5 @@
-/* Realiza la implementación de una agenda de contactos por medio de una lista simplemente enlazada.
+/* Michael Schossow
+ * Realiza la implementación de una agenda de contactos por medio de una lista simplemente enlazada.
  De cada contacto únicamente queremos saber el nombre y el teléfono.
 
  1. Crea la estructura adecuada para la definición de la agenda.
