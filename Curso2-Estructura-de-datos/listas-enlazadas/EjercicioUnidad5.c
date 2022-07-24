@@ -28,49 +28,51 @@ Agenda *lista = NULL;
 Agenda *pNodo = NULL;
 
 
-int menu(); //función imprime el menú para el usuario.
+char menu(); //función pasa a stdout el menú para el usuario.
 void insertar(char name[MAX], int tel); //Inserta uno o mas elementos a la lista. 
 void eliminar(char name[MAX]);  //Elimina un elemento de la lista eligiendo un nombre.
-void printLista();  //Imprime la lista entera, Contacto y su teléfono
+void printLista();  //Pasa a stdout la lista entera, Contacto y su teléfono
+void printTelefono(char name[MAX]);  //Pasa a stdout un número de teléfono de un cantacto elegido
 
 
 
 int main()
 {
+    char nombre[MAX];
+    int telefono = 0;
     bool loop = true; //Valor para determinar el loop.
     while(loop==true){
         switch(menu()){
-            case 1:
-                    printf("Isnertar un elemento\n");
-                    insertar("Michael", 12345);
-                    insertar("Ana", 655555555);
-                    insertar("Robert", 655);
-                    insertar("Antonio", 1111);
-                    insertar("Kafka", 112);
+            case '1':
+                    printf("**************  Nueva entrada de Contactos **************\n\n");
+                    printf("\tInserta un nombre: ");
+                    getchar();
+                    scanf("%19s", &nombre);  
+                    printf("\tNº del teléfono (max 10 números): ");
+                    scanf("%d", &telefono);
+                    printf("%19s", nombre);
+                    insertar(nombre, telefono);
                     break;
-            case 2:
-                    printf("Elemina un elemento\n");
-                    eliminar("Robert");
+            case '2':
+                    printf("**************  Elimina un Contacto *********************\n");
+                    printf("\n\tNombre para eliminar: ");
+                    scanf("%19s", &nombre);
+                    eliminar(nombre);
                     break;
-            case 3:
+            case '3':
                     printLista();
                     break;
-            case 4:
-                    printf("4\n");
+            case '4':
+                    printf("\tBusca un Contacto: ");
+                    scanf("%19s", &nombre);
+                    printTelefono(nombre);
                     break;
-            case 5:
-                    printf("\n*********************************************\n"
+            case '5':
+                    printf("\n*******************************************************\n"
                             "\tFIN DEL PROGRAMA!\n"
-                            "*********************************************\n");
+                            "********************************************************\n");
                     loop = false;
                     break;
-            default:
-                    printf("\n*********************************************\n"
-                            "\tINPUT VALUE ERROR!\n"
-                            "Elige un numero del menú de 1 a 5 por favor.\n"
-                            "*********************************************\n");
-                    break;
-            
         }
     }
     
@@ -80,18 +82,21 @@ int main()
 
 
 
-int menu(){
-    int num;
-    printf("\n****************  Agenda  *******************\n");
-    printf("1. Insertar contacto\n");
-    printf("2. Eliminar contacto\n");
-    printf("3. Mostrar todos los contactos\n");
-    printf("4. Mostrar número de contactos\n");
-    printf("5. Salir\n\n");
-    printf("\tEligen Usted un numero [1-5]: ");
-    scanf("%d", &num);
-    printf("\n");
-    return num;
+char menu(){
+    char c;
+    printf("\n**********************  Agenda  *************************\n\n");
+    printf("\t(1) Insertar contacto\n");
+    printf("\t(2) Eliminar contacto\n");
+    printf("\t(3) Mostrar todos los contactos\n");
+    printf("\t(4) Mostrar número de contacto\n");
+    printf("\t(5) Salir\n\n");
+    printf("\tElige un número [1-5]: ");
+    do{
+        fflush(stdin);
+        c = getchar();
+    }while(c<'0'||c>'5');
+    printf("\n\n");
+    return c;
 }
 
 
@@ -155,7 +160,8 @@ void eliminar(char name[MAX]){
         lista = lista->next;
     }
     if(nombre_existe == false){
-        printf("Error borrar entrada! Nombre '%s' no existe en Agenda!\n", name);
+        printf("\tError borrar entrada!\n" 
+                "\tNombre '%s' no existe en Agenda!\n", name);
     }
 }
 
@@ -163,17 +169,42 @@ void eliminar(char name[MAX]){
 void printLista(){
     lista = pNodo;
     if(pNodo == NULL){
-        printf("*********** Lista de Contactos  *************\n\n");
+        printf("****************** Lista de Contactos  ********************\n\n");
         printf("   No hay Contactos añadidos a la Agenda!\n");
-        printf("\n*********************************************\n");
+        printf("\n*********************************************************\n");
     }
     else
     {
-    printf("*********** Lista de Contactos  *************\n\n");
+    printf("****************** Lista de Contactos  ********************\n\n");
     while(lista!=NULL){
         printf("\t%-20s%d\n", lista->nombre, lista->telefono);
         lista = lista->next;
     }
-    printf("\n*********************************************\n");
+    printf("\n*********************************************************\n");
     }
-} 
+}
+
+void printTelefono(char name[MAX]){
+    lista = pNodo;
+    if(pNodo == NULL){
+        printf("****************** Lista de Contactos  ********************\n\n");
+        printf("   No hay Contactos añadidos a la Agenda!\n");
+        printf("\n*********************************************************\n");
+    }
+    else
+    {
+        printf("*********************** Contacto  *************************\n\n");
+        bool nombreexists = false;
+        while(lista!=NULL){
+            if(strcmp(lista->nombre, name) == 0){
+                printf("\t%-20sTel.: %d\n", lista->nombre, lista->telefono);
+                nombreexists = true;
+            }
+            lista = lista->next;
+        }
+        if(nombreexists == false){
+            printf("\t%s no se encuentra en la Agenda!\n", name);
+        }
+        printf("\n*********************************************************\n");
+    }
+}
